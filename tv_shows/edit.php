@@ -41,7 +41,7 @@ var_dump($row);
 		<input class="form-control" type="number" name="rating" value="<?php echo $row['rating']?>">
 	</div>
 
-	<button class="btn btn-primary" type="submit">Create</button>
+	<button class="btn btn-primary" type="submit">Update</button>
 </form>
 
 <?php include_once('_partials/_footer.php'); ?>

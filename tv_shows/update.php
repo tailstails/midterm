@@ -2,7 +2,9 @@
 
   require_once('../_config.php');
   include('./.env.php');
-  $conn = mysqli_connect(getenv('DB_HOST'), getenv('DB_USER'), getenv('DB_PASS'), getenv('DB'));
+  include_once('_utilities/_connect.php');
+  $conn = connect();
+  
 
 
     /*
@@ -17,7 +19,7 @@
   $sql = "UPDATE tv_shows SET
             title = '{$_POST['title']}',
             description = '{$_POST['description']}',
-            rating = '{$_POST['rating']}',
+            rating = '{$_POST['rating']}'
           WHERE id = {$_POST['id']}";
   echo $sql;
   $res = mysqli_query($conn, $sql);
@@ -25,11 +27,11 @@
 session_start();
 
 if ($res) {
-  $_SESSION['notification'] = "The tv was created succesfully.";
+  $_SESSION['notification'] = "The tv show was edited successfully.";
 } else {
-  $_SESSION['notification'] = "There was an error creating the tv show: " . mysqli_error($conn);
+  $_SESSION['notification'] = "There was an error editing the tv show: " . mysqli_error($conn);
 }
-header("Location: ./notification.php");
+header("Location:../notification.php");
 die; 
 ?>
 
